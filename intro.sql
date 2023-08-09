@@ -63,3 +63,75 @@ insert into user5 values(2 ,'sifat', 'sifat@gmail.com');
 -- we can create table one time 
 -- for updating table we use ALTER
 select * from user5;
+
+
+
+-- Active: 1691582793511@@127.0.0.1@5432@test@public
+CREATE TABLE "user"(
+    user_id SERIAL PRIMARY KEY,
+    username VARCHAR(255) UNIQUE,
+    email VARCHAR(255) UNIQUE,
+    age int DEFAULT 18
+  
+);
+
+DROP Table "user5";
+
+-- alter table 
+--  add a column, drop a column, change datatype of a column,
+-- rename a column, set default value for a column,
+-- add constraints to a column, dorp CONSTRAINTS, table RENAMe information_schema
+
+
+insert into "user" values(1, 'abc', 'abc@gmail.com');
+insert into "user" values(2 ,'sifat', 'sifat@gmail.com');
+
+-- add a column 
+ALTER TABLE "user"
+-- ADD + COLUMN + column name+ data type + constraints
+ADD COLUMN password VARCHAR(255) DEFAULT 'admin123'  not NULL;
+
+-- drop column 
+alter TABLE "user"
+drop COLUMN age ;
+
+-- # change datatype of a column
+alter TABLE "user" 
+    add COLUMN demo int;
+
+alter table "user"
+    alter COLUMN demo type TEXT;
+
+-- # add default value
+alter table "user"
+    alter COLUMN demo set DEFAULT 'Bangladesh';
+
+-- # drop DEFAULT value 
+alter table "user"
+    alter COLUMN demo drop DEFAULT;
+
+-- insert into "user" values(4, 'sifat4', 'sifat4@gmail.com');
+insert into "user" values(5 ,'sifat5', 'sifat5@gmail.com');
+
+
+-- # rename a column 
+alter TABLE "user"
+    RENAME COLUMN demo to country;
+
+-- how to add constraints  
+alter TABLE "user"
+alter COLUMN country set not null;
+
+alter table "user"
+    add CONSTRAINT unique_email UNIQUE(email);
+
+
+-- drop constraints  
+alter TABLE "user"
+alter COLUMN country drop null;
+alter table "user"
+    DROP CONSTRAINT unique_email;
+
+    -- delete all rows 
+    TRUNCATE table "user";
+SELECT * from "user";
